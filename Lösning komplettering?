@@ -1,0 +1,91 @@
+
+public void collisionupdate() {
+
+temppacman;
+cookiecollision(temppacman,getPacman());
+ghostcollision(temppacman,getPacman());
+monstercollison(temppacman,getPacman());
+youtubecollison(temppacman,getPacman());
+
+tempangry;
+cookiecollision(tempangry, getAngry());
+
+}
+---------------------------------------------------------------
+public void youtubecollision(rectangle2d object2d, pacman pacman) {
+if (object2d.intersects(youtube)) {
+			hasYoutube = false;
+			getYoutube().collision(pacman).
+		}
+	}
+----------------------------------------------------------
+
+public void cookiecollision(rectangle2d objct2d, movingobject object) {
+Cookie tempCookie = new Cookie(x, y, 5, 5);
+
+		for (Cookie cookie : level.getCookies()) {
+			if (cookie.intersects(object2d)) {
+				tempCookie = cookie;
+				level.getCookies().remove(tempCookie);
+				cookie.collision(object)
+			}
+		}
+}
+-----------------------------------------------------------
+public void monstercollision(rectangle2d object2d, pacman pacman) {
+if (object2d.intersects(youtube)) {
+			hasMonster = false;
+			getMonster().collision(pacman).
+		}
+	}
+
+--------------------------------------------------------
+public void ghostcollision(rectangle2d object2d, pacman pacman) {
+for (Ghost ghost : ghosts) {
+			Rectangle2D tempGhost = new Rectangle2D(ghost.getX(), ghost.getY(), ghost.getWidth(), ghost.getHeight());
+
+			if (tempGhost.intersects(object2d)) {
+				ghost.collision(pacman);
+			}
+		}
+------------------------------------------------------------------
+i ghost:
+
+public void collision(pacman pacman) {
+pacman.loseLife();
+pacman.setX(0);
+pacman.setY(0);
+pacman.setMODirection(5);
+
+}
+-------------------------------------------------------------
+i youtube:
+
+public void collision(pacman pacman) {
+pacman.setLife();
+}
+-------------------------------------------------------------
+i cookie:
+
+public void collision(movingobject object) {
+object.eatCookie();
+//som i guess får vara en tom metod i ghost, men finns inget bättre sätt att göra?
+
+}
+-----------------------------------------------------------------------
+i monster:
+
+public void collision(pacman pacman) {
+pacman.setSpeed(15);
+}
+------------------------------------------------------------------------
+OCH I PLAYSTATES UPDATE KALLAR VI ISTÄLLET FÖR SÅHÄR:
+for (MovingObject object : data.getGamesMovingObjects()) {
+			object.move();
+			object.collision(this);
+		}
+SÅ GÖR VI SÅHÄR:
+for (MovingObject object : data.getGamesMovingObjects()) {
+			object.move();
+      }
+  data.collisionupdate();
